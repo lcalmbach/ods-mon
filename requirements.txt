@@ -1,0 +1,4 @@
+streamlit==1.38.0
+streamlit-aggrid==
+streamlit-option-menu==0.3.2
+openai==1.43.0

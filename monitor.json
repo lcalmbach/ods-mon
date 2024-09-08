@@ -1,0 +1,198 @@
+{
+    "100051": {
+        "root": "data.bs.ch",
+        "dataset": "100051",
+        "title": "Luftqualit\u00e4t Station Basel-Binningen",
+        "timestamp-col": "datum_zeit",
+        "include-is-weekday": false,
+        "value-cols": {
+            "o3_ug_m3": {
+                "name": "O3",
+                "agg_funcs": [
+                    "mean",
+                    "max",
+                    "min"
+                ],
+                "standards": []
+            },
+            "no2_ug_m3": {
+                "name": "NO2",
+                "agg_funcs": [
+                    "mean",
+                    "max",
+                    "min"
+                ],
+                "standards": []  
+            },
+            "pm10_ug_m3": {
+                "name": "PM10",
+                "agg_funcs": [
+                    "mean",
+                    "max",
+                    "min"
+                ],
+                "standards": []
+            },
+            "pm2_5_ug_m3": {
+                "name": "PM2.5",
+                "agg_funcs": [
+                    "mean",
+                    "max",
+                    "min"
+                ],
+                "standards": []
+            }
+        },
+        "aggregation": "d",
+        "rename-cols": false,
+        "reports": {
+            "day":
+                {
+                    "compare_to_periods": ["last_month", "year_todate", "all_time"],
+                    "parameters": ["o3_ug_m3_mean", "o3_ug_m3_max", "no2_ug_m3_mean", "no2_ug_m3_max", "pm10_ug_m3_mean", "pm10_ug_m3_max", "pm2_5_ug_m3_mean", "pm2_5_ug_m3_max"]
+                },
+            "month":
+                {
+                    "compare_to_periods": ["last_year", "all_time"],
+                    "parameters": ["o3_ug_m3_mean", "o3_ug_m3_max", "no2_ug_m3_mean", "no2_ug_m3_max", "pm10_ug_m3_mean", "pm10_ug_m3_max", "pm2_5_ug_m3_mean", "pm2_5_ug_m3_max"]
+                },
+            "year":
+                {
+                    "compare_to_periods": ["last_year", "all_time"],
+                    "parameters": ["o3_ug_m3_mean", "o3_ug_m3_max", "no2_ug_m3_mean", "no2_ug_m3_max", "pm10_ug_m3_mean", "pm10_ug_m3_max", "pm2_5_ug_m3_mean", "pm2_5_ug_m3_max"]
+                }
+        }
+    },
+    "100089": {
+        "root": "data.bs.ch",
+        "dataset": "100089",
+        "title": "Rhein-Abfluss",
+        "timestamp-col": "timestamp",
+        "include-is-weekday": false,
+        "value-cols": {
+            "abfluss": {
+                "name": "Abfluss",
+                "agg_funcs": [
+                    "mean",
+                    "max",
+                    "min"
+                ],
+                "standards": []
+            }
+        },
+        "aggregation": "d",
+        "rename-cols": false,
+        "reports": {
+            "day":
+                {
+                    "compare_to_periods": ["last_month", "year_todate", "all_time"],
+                    "parameters": ["abfluss_mean", "abfluss_max", "abfluss_min"]
+                },
+            "month":
+                {
+                    "compare_to_periods": ["last_year", "all_time"],
+                    "parameters": ["abfluss_mean", "abfluss_max", "abfluss_min"]
+                },
+            "year":
+                {
+                    "compare_to_periods": ["last_year", "all_time"],
+                    "parameters": ["abfluss_mean", "abfluss_max", "abfluss_min"]
+                }
+        }
+    },
+    "100233": {
+        "root": "data.bs.ch",
+        "dataset": "100233",
+        "title": "Kantonaler Stromverbrauch",
+        "timestamp-col": "timestamp_interval_start",
+        "include-is-weekday": true,
+        "value-cols": {
+            "stromverbrauch_kwh": {
+                "name": "Stromverbrauch[kwh]",
+                "agg_funcs": [
+                    "sum",
+                    "max",
+                    "min"
+                ],
+                "standards": []
+            }
+        },
+        "aggregation": "d",
+        "rename-cols": false,
+        "reports": {
+            "day":
+                {
+                    "compare_to_periods": ["last_month", "year_todate", "all_time"],
+                    "parameters": ["stromverbrauch_kwh_sum"]
+                },
+            "month":
+                {
+                    "compare_to_periods": ["last_year", "all_time"],
+                    "parameters": ["stromverbrauch_kwh_sum"]
+                },
+            "year":
+                {
+                    "compare_to_periods": ["last_year", "all_time"],
+                    "parameters": ["stromverbrauch_kwh_sum"]
+                }
+        }
+    },
+    "100254": {
+        "root": "data.bs.ch",
+        "dataset": "100254",
+        "title": "T\u00e4gliche Klimadaten der NBCN-Station Basel-Binningen",
+        "timestamp-col": "date",
+        "include-is-weekday": false,
+        "value-cols": {
+            "rre150d0": {
+                "name": "precipitation",
+                "agg_funcs": [
+                    "sum",
+                    "max",
+                    "min"
+                ],
+                "standards": []
+            },
+            "sre000d0": {
+                "name": "sunshine_duration",
+                "agg_funcs": [],
+                "standards": []
+            },
+            "tre200d0": {
+                "name": "temperature_mean",
+                "agg_funcs": [],
+                "standards": []
+            },
+            "tre200dn": {
+                "name": "temperature_min",
+                "agg_funcs": [],
+                "standards": []
+            },
+            "tre200dx": {
+                "name": "temperature_max",
+                "agg_funcs": [],
+                "standards": []
+            }
+
+        },
+        "aggregation": "d",
+        "rename-cols": true,
+        "reports": {
+            "day":
+                {
+                    "compare_to_periods": ["last_month", "year_todate", "all_time"],
+                    "parameters": ["precipitation", "sunshine_duration", "temperature_mean", "temperature_min", "temperature_max"]
+                },
+            "month":
+                {
+                    "compare_to_periods": ["last_year", "all_time"],
+                    "parameters": ["precipitation", "sunshine_duration", "temperature_mean", "temperature_min", "temperature_max"]
+                },
+            "year":
+                {
+                    "compare_to_periods": ["last_year", "all_time"],
+                    "parameters": ["precipitation", "sunshine_duration", "temperature_mean", "temperature_min", "temperature_max"]
+                }
+        }
+    }
+}
