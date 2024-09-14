@@ -27,7 +27,7 @@ settings_file = Path("monitor.json")
 settings_dict = json.loads(settings_file.read_text())
 
 
-APP_INFO = f"""<div style="background-color:#34282C; padding: 10px;border-radius: 15px; border:solid 1px white;">
+APP_INFO = f"""<div style="background-color:#CFEFF4; padding: 10px;border-radius: 15px; border:solid 1px white;">
     <small>Created by <a href="mailto:{__author_email__}">{__author__}</a><br>
     Version: {__version__} ({VERSION_DATE})<br>
     Source data: <a href="https://data.bs.ch">data.bs</a><br>
@@ -114,7 +114,7 @@ def show_report():
             ds.year = year
 
     generate_summary = st.sidebar.checkbox("Generate KI summary", value=True)
-    with st.expander(f"Description and preview of the Dataset", expanded=True):
+    with st.expander(f"Description and preview of the Dataset", expanded=False):
 
         st.markdown(
             ds.ods_metadata["metas"]["default"]["description"],
