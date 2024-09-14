@@ -8,7 +8,7 @@ from dataset import Dataset, ReportType, MONTH2SEASON
 from texts import txt
 from helper import MONTHS_DICT, SEASON_DICT
 
-__version__ = "0.0.2"
+__version__ = "0.0.3"
 __author__ = "Lukas Calmbach"
 __author_email__ = "lcalmbach@gmail.com"
 
@@ -25,6 +25,7 @@ menu_options = [
 ]
 settings_file = Path("monitor.json")
 settings_dict = json.loads(settings_file.read_text())
+
 
 APP_INFO = f"""<div style="background-color:#34282C; padding: 10px;border-radius: 15px; border:solid 1px white;">
     <small>Created by <a href="mailto:{__author_email__}">{__author__}</a><br>
@@ -43,7 +44,6 @@ def init():
     )
     with open("./style.css") as f:
         st.markdown("<style>{}</style>".format(f.read()), unsafe_allow_html=True)
-
 
 def get_year(ds):
     years_options = ds.get_year_range()
