@@ -1,6 +1,6 @@
 from openai import OpenAI
 from helper import get_var
-
+import streamlit as st
 
 def get_completion(system_prompt, user_prompt):
     """
@@ -13,12 +13,15 @@ def get_completion(system_prompt, user_prompt):
     Raises:
         None
     """
+
+    model = "gpt-4o"
+
     client = OpenAI(
-        api_key=get_var("OPENAI_API_KEY"),
+        api_key=st.secrets["OPENAI_API_KEY"],
     )
 
     completion = client.chat.completions.create(
-        model="gpt-4o",
+        model=model,
         messages=[
             {"role": "system", "content": system_prompt},
             {"role": "user", "content": user_prompt},

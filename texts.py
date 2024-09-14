@@ -18,13 +18,29 @@ the table has the following columns:
 
 
 """,
+    "table_legend": """POI: Period of interest</br>
+    CP: Comparison Period""",
     "user_prompt": """Please provide a summary of the reported values in 3 to 5 sentences. : 
     {}
     """,
-    "info": """# 📈ODS-MON
-OGD Data provide increasingly high resolution time series data. Wthin the ODS environment, such data is difficult to analyse. While data is updated daily or even hourly, most user do not wish to inspect this data continously and only wish to be averted of significant changes. Such changes are generally exeptionally high or low values as compared to historic data or exceedances of regulatory standards.
+    "info": """# 📈 Data-News-Generator (DNG)
+OGD (Open Government Data) providers are offering increasingly high-resolution time series data. While this data is updated daily or even hourly, most users are not interested in continuous monitoring and instead prefer to be notified only when significant changes occur. These changes typically involve exceptionally high or low values compared to historical data (e.g., last year, last 10 years, same month in the last 10 years) or regulatory standards. Manually generating reports to track such changes can be simple but tedious.
 
-ODS-Mon allows to configure reports for timeseries, that allow to extract essential information and uses a Large Language Model to summarize the findings in natural language. Reports include daily reports, comparing a selected date to various periods, for example the last month, or year to date, or the last 1, 5 or 10 years. For each period to compare to, mean, min and max values are compared to the mean, min and max value for the day in question. The monthly report selects the month before the selected date and compares its statistics with the defines comparison periods as in the previous daily report. Yearly reports compare yearly statistics with previous periods, typically the last previous 1, 5 or 10 years or all time.
+The Data-News-Generator (DNG) app provides a framework to automate the generation of such reports based on a configuration file. Currently, the only supported data provider is [Opendatasoft](https://www.opendatasoft.com/) (ODS), a popular platform for publishing datasets, particularly in the Open Government Data community. ODS offers a powerful API for accessing data and metadata.
 
+A typical DNG report contains the following minimal configuration details:
+
+- The dataset to be used
+- The parameters to be included in the report
+- The period of interest (e.g., last day, month, year, etc.)
+- Comparison periods (e.g., last year, last 10 years, same month in the last 10 years, etc.)
+- Aggregation functions for comparison (e.g., mean, min, max, etc.)
+- The output presents the selected parameters for the period of interest alongside the comparison periods and calculates the differences. A significance factor is computed for each comparison, indicating whether the difference is notable. A factor of 1 is assigned if the difference between the period of - interest and the comparison period exceeds one standard deviation of the comparison period. A factor of 2 is assigned if the difference exceeds two standard deviations or if the value is higher than the maximum or lower than the minimum of the comparison period.
+
+The report is generated in a tabular format, and a summary is created using a Large Language Model (LLM). The summary is written in natural language and highlights the key insights from the report. Currently, it utilizes the OpenAI API with the GPT-4 model (referred to as GPT-4o). This functionality is still under development, and while the generated summaries are generally accurate, the model sometimes struggles to differentiate between relevant and irrelevant information.
+
+The app is designed to be extensible, future version should allow users to subsribe to selected reports. Reports are then received by mail and the user may define conditions for when a report should be mailed to them: for example daily reports can be sent daily or just if significant changes have been detected. It is also planned to included additional data providers.
 """,
+
+    "settings_info": """Below are the settings for the reports in JSON format that can be generated. Each node corresponds to an ODS dataset, and for each dataset, reports can be generated on a daily, monthly, or yearly basis.""",
 }

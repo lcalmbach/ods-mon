@@ -48,17 +48,30 @@
         "reports": {
             "day":
                 {
-                    "compare_to_periods": ["last_month", "year_todate", "all_time"],
+                    "title": "Vergleich verschiedener Luftqualit\u00e4ts Parameter vom {} mit historischen Werten",
+                    "auto-min-days": 1,
+                    "compare-to-periods": ["last_month", "year_todate", "all_time"],
                     "parameters": ["o3_ug_m3_mean", "o3_ug_m3_max", "no2_ug_m3_mean", "no2_ug_m3_max", "pm10_ug_m3_mean", "pm10_ug_m3_max", "pm2_5_ug_m3_mean", "pm2_5_ug_m3_max"]
                 },
             "month":
                 {
-                    "compare_to_periods": ["last_year", "all_time"],
+                    "title": "Vergleich verschiedener monatlicher Luftqualit\u00e4ts Parameter vom {} {} mit historischen Werten",
+                    "auto-min-days": 15,
+                    "compare-to-periods": ["last_year", "month_all_time"],
                     "parameters": ["o3_ug_m3_mean", "o3_ug_m3_max", "no2_ug_m3_mean", "no2_ug_m3_max", "pm10_ug_m3_mean", "pm10_ug_m3_max", "pm2_5_ug_m3_mean", "pm2_5_ug_m3_max"]
                 },
             "year":
                 {
-                    "compare_to_periods": ["last_year", "all_time"],
+                    "title": "Vergleich der j\u00e4hrlichen Luftqualit\u00e4ts Parameter von {} mit historischen Werten",
+                    "auto-min-days": 90,
+                    "compare-to-periods": ["last_year", "all_time"],
+                    "parameters": ["o3_ug_m3_mean", "o3_ug_m3_max", "no2_ug_m3_mean", "no2_ug_m3_max", "pm10_ug_m3_mean", "pm10_ug_m3_max", "pm2_5_ug_m3_mean", "pm2_5_ug_m3_max"]
+                },
+            "season":
+                {
+                    "title": "Vergleich der j\u00e4hrlichen Luftqualit\u00e4ts Parameter von {} mit historischen Werten",
+                    "auto-min-days": 30,
+                    "compare-to-periods": ["last_year", "all_time"],
                     "parameters": ["o3_ug_m3_mean", "o3_ug_m3_max", "no2_ug_m3_mean", "no2_ug_m3_max", "pm10_ug_m3_mean", "pm10_ug_m3_max", "pm2_5_ug_m3_mean", "pm2_5_ug_m3_max"]
                 }
         }
@@ -85,17 +98,23 @@
         "reports": {
             "day":
                 {
-                    "compare_to_periods": ["last_month", "year_todate", "all_time"],
+                    "title": "Vergleich des Rheinablusses von {} mit historischen Werten",
+                    "auto-min-days": 1,
+                    "compare-to-periods": ["last_month", "year_todate", "all_time"],
                     "parameters": ["abfluss_mean", "abfluss_max", "abfluss_min"]
                 },
             "month":
                 {
-                    "compare_to_periods": ["last_year", "all_time"],
+                    "title": "Vergleich des monatlichen Rheinablusses von {} {} mit historischen Werten",
+                    "auto-min-days": 15,
+                    "compare-to-periods": ["last_year", "all_time"],
                     "parameters": ["abfluss_mean", "abfluss_max", "abfluss_min"]
                 },
             "year":
                 {
-                    "compare_to_periods": ["last_year", "all_time"],
+                    "title": "Vergleich des monatlichen Rheinablusses von {} {} mit historischen Werten",
+                    "auto-min-days": 90,
+                    "compare-to-periods": ["last_year", "all_time"],
                     "parameters": ["abfluss_mean", "abfluss_max", "abfluss_min"]
                 }
         }
@@ -122,17 +141,23 @@
         "reports": {
             "day":
                 {
-                    "compare_to_periods": ["last_month", "year_todate", "all_time"],
+                    "title": "Kantonaler Stromverbrauch von {}, Vergleich mit historischen Werten",
+                    "auto-min-days": 1,
+                    "compare-to-periods": ["last_month", "year_todate", "all_time"],
                     "parameters": ["stromverbrauch_kwh_sum"]
                 },
             "month":
                 {
-                    "compare_to_periods": ["last_year", "all_time"],
+                    "title": "Kantonaler monatlicher Stromverbrauch im {} {}, Vergleich mit historischen Werten",
+                    "auto-min-days": 15,
+                    "compare-to-periods": ["last_year", "all_time"],
                     "parameters": ["stromverbrauch_kwh_sum"]
                 },
             "year":
                 {
-                    "compare_to_periods": ["last_year", "all_time"],
+                    "title": "Kantonaler jährlicher Stromverbrauch im {}, Vergleich mit historischen Werten",
+                    "auto-min-days": 90,
+                    "compare-to-periods": ["last_year", "all_time"],
                     "parameters": ["stromverbrauch_kwh_sum"]
                 }
         }
@@ -180,18 +205,83 @@
         "reports": {
             "day":
                 {
-                    "compare_to_periods": ["last_month", "year_todate", "all_time"],
+                    "title": "Klimadaten der Station Basel/Binningen vom {}, Vergleich mit historischen Werten",
+                    "auto-min-days": 1,
+                    "compare-to-periods": ["last_month", "year_todate", "all_time"],
                     "parameters": ["precipitation", "sunshine_duration", "temperature_mean", "temperature_min", "temperature_max"]
                 },
             "month":
                 {
-                    "compare_to_periods": ["last_year", "all_time"],
+                    "title": "Monatliche Klimadaten der Station Basel/Binningen vom {} {}, Vergleich mit historischen Werten",
+                    "auto-min-days": 15,
+                    "compare-to-periods": ["last_5_years_month", "last_10_years_month", "all_time_month"],
                     "parameters": ["precipitation", "sunshine_duration", "temperature_mean", "temperature_min", "temperature_max"]
                 },
             "year":
                 {
-                    "compare_to_periods": ["last_year", "all_time"],
+                    "title": "J\u00e4hrliche Klimadaten der Station Basel/Binningen vom {}, Vergleich mit historischen Werten",
+                    "auto-min-days": 90,
+                    "compare-to-periods": ["last_year", "all_time"],
                     "parameters": ["precipitation", "sunshine_duration", "temperature_mean", "temperature_min", "temperature_max"]
+                }
+        }
+    },
+    "12510": {
+        "root": "data.bl.ch",
+        "dataset": "12510",
+        "title": "Luftqualit\u00e4t Station A2 Hard",
+        "timestamp-col": "anfangszeit",
+        "include-is-weekday": false,
+        "value-cols": {
+            "no2": {
+                "name": "no2",
+                "agg_funcs": [
+                    "mean",
+                    "max"
+                ],
+                "standards": []
+            },
+            "pm10": {
+                "name": "pm10",
+                "agg_funcs": [
+                    "mean",
+                    "max"
+                ],
+                "standards": []
+            },
+            "pm2_5": {
+                "name": "pm2_5",
+                "agg_funcs": [
+                    "mean",
+                    "max"
+                ],
+                "standards": []
+            }
+
+        },
+        "aggregation": "d",
+        "rename-cols": true,
+        "reports": {
+            "day":
+                {
+                    "title": "Luftqualit\u00e4t Station A2 Hard vom {}, Vergleich mit historischen Werten",
+                    "auto-min-days": 1,
+                    "compare-to-periods": ["last_month", "year_todate", "all_time"],
+                    "parameters": ["no2_mean", "no2_max", "pm10_mean", "pm10_max", "pm2_5_mean", "pm2_5_max"]
+                },
+            "month":
+                {
+                    "title": "Monatliche Luftqualit\u00e4t Station A2 Hard vom {} {}, Vergleich mit historischen Werten",
+                    "auto-min-days": 15,
+                    "compare-to-periods": ["last_5_years_month", "last_10_years_month", "all_time_month"],
+                    "parameters": ["no2_mean", "no2_max", "pm10_mean", "pm10_max", "pm2_5_mean", "pm2_5_max"]
+                },
+            "year":
+                {
+                    "title": "Jährliche Luftqualit\u00e4t Station A2 Hard vom {}, Vergleich mit historischen Werten",
+                    "auto-min-days": 90,
+                    "compare-to-periods": ["last_year", "all_time"],
+                    "parameters": ["no2_mean", "no2_max", "pm10_mean", "pm10_max", "pm2_5_mean", "pm2_5_max"]
                 }
         }
     }
