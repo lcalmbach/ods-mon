@@ -157,3 +157,4 @@ Each report type (daily, monthly, yearly, or seasonal) includes the following pa
 ---
 
 ## License
+This project is licensed under the MIT License. See the LICENSE file for more details.
