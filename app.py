@@ -8,11 +8,11 @@ from dataset import Dataset, ReportType, MONTH2SEASON
 from texts import txt
 from helper import MONTHS_DICT, SEASON_DICT
 
-__version__ = "0.0.3"
+__version__ = "0.0.4"
 __author__ = "Lukas Calmbach"
 __author_email__ = "lcalmbach@gmail.com"
 
-VERSION_DATE = "2024-09-14"
+VERSION_DATE = "2024-12-05"
 APP_NAME = "Data-News-Generator"
 APP_ICON = "📈"
 GIT_REPO = "https://github.com/lcalmbach/ods-mon"
