@@ -23,7 +23,7 @@ the table has the following columns:
     "user_prompt": """Please provide a summary of the reported values in 3 to 5 sentences. : 
     {}
     """,
-    "info": """# 📈 Data-News-Generator (DNG)
+    "info": """# 📰 Data-News-Generator (DNG)
 OGD (Open Government Data) providers are offering increasingly high-resolution time series data. While this data is updated daily or even hourly, most users are not interested in continuous monitoring and instead prefer to be notified only when significant changes occur. These changes typically involve exceptionally high or low values compared to historical data (e.g., last year, last 10 years, same month in the last 10 years) or regulatory standards. Manually generating reports to track such changes can be simple but tedious.
 
 The Data-News-Generator (DNG) app provides a framework to automate the generation of such reports based on a configuration file. Currently, the only supported data provider is [Opendatasoft](https://www.opendatasoft.com/) (ODS), a popular platform for publishing datasets, particularly in the Open Government Data community. ODS offers a powerful API for accessing data and metadata.

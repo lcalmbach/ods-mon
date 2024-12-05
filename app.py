@@ -14,7 +14,7 @@ __author_email__ = "lcalmbach@gmail.com"
 
 VERSION_DATE = "2024-12-05"
 APP_NAME = "Data-News-Generator"
-APP_ICON = "📈"
+APP_ICON = "📰"
 GIT_REPO = "https://github.com/lcalmbach/ods-mon"
 
 menu_icons = ["house", "gear", "chat-dots"]
@@ -150,13 +150,13 @@ def main():
             None,
             menu_options,
             icons=menu_icons,
-            menu_icon="cast",
+            menu_icon=APP_ICON,
             default_index=0,
         )
     index = menu_options.index(menu_action)
     if index == 0:
         col1, col2, col3 = st.columns([1, 4, 1])
-        image_path = "./ods-mon-splashscreen.webp"
+        image_path = "./splashscreen.webp"
         with col2:
             st.image(image_path, width=600)
         st.markdown(txt["info"], unsafe_allow_html=True)
