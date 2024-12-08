@@ -43,9 +43,10 @@ class ReportType(Enum):
 
 
 RECORD_TYPE_DICT = {
-    "poi": "POI",    
+    "poi": "POI",
     "cp": "CP",
 }
+
 
 class ComparisonPeriod(Enum):
     THIS_MONTH = "this_month"
@@ -91,33 +92,18 @@ MONTH2SEASON = {
     11: SEASON.FALL.value,
 }
 
-# columns for the report table
-report_fields_old = [
-    "record_type",
-    "period",
-    "period_value",
-    "parameter",
-    "value",
-    "function",
-    "event_date",
-    "diff",
-    "diff_perc",
-    "significance",
-]
-
 report_fields = {
-    'record_type': pd.Series(dtype='str'),       
-    'period': pd.Series(dtype='str'),       
-    'period_value': pd.Series(dtype='float'), 
-    "parameter": pd.Series(dtype='str'),   
-    "value": pd.Series(dtype='float'), 
-    "function": pd.Series(dtype='str'), 
-    "event_date": pd.Series(dtype='str'), 
-    "diff": pd.Series(dtype='float'), 
-    "diff_perc": pd.Series(dtype='float'), 
-    "significance": pd.Series(dtype='str'), 
+    "record_type": pd.Series(dtype="str"),
+    "period": pd.Series(dtype="str"),
+    "period_value": pd.Series(dtype="float"),
+    "parameter": pd.Series(dtype="str"),
+    "value": pd.Series(dtype="float"),
+    "function": pd.Series(dtype="str"),
+    "event_date": pd.Series(dtype="str"),
+    "diff": pd.Series(dtype="float"),
+    "diff_perc": pd.Series(dtype="float"),
+    "significance": pd.Series(dtype="str"),
 }
-
 
 
 class Report:
@@ -151,11 +137,14 @@ class Report:
         if stat_func in ["min", "max"]:
             filtered_df = df[df[par] == stat_value]
             if not filtered_df.empty:
-                return filtered_df[self.parent.timestamp_col].iloc[0].strftime("%Y-%m-%d")
+                return (
+                    filtered_df[self.parent.timestamp_col].iloc[0].strftime("%Y-%m-%d")
+                )
             else:
                 return None
         else:
             return None
+
     def get_rank(self, value, period_df, par):
         pass
 
@@ -167,66 +156,71 @@ class Report:
             if period == ComparisonPeriod.THIS_MONTH.value:
                 month = self.parent.month
                 years = [self.parent.year]
-                period_value = f'{calendar.month_name[month]}/{self.parent.year}'
+                period_value = f"{calendar.month_name[month]}/{self.parent.year}"
             elif period == ComparisonPeriod.LAST_MONTH.value:
                 month, year = self.get_last_month_year(
                     self.parent.month, self.parent.year
                 )
                 years = [year]
-                period_value = f'{calendar.month_name[month]}/{year}'
+                period_value = f"{calendar.month_name[month]}/{year}"
+            elif period == ComparisonPeriod.LAST_YEAR_MONTH.value:
+                month = self.parent.month
+                years = [self.parent.year - 1]
+                period_value = f"{calendar.month_name[month]}/{years[0]}"
             elif period == ComparisonPeriod.THIS_SEASON.value:
                 season = self.parent.season
                 years = [self.parent.year]
-                period_value = f'{SEASON_DICT[season]}/{self.parent.year}'
+                period_value = f"{SEASON_DICT[season]}/{self.parent.year}"
             elif period == ComparisonPeriod.LAST_SEASON.value:
                 season, year = self.get_last_season_year(
                     self.parent.season, self.parent.year
                 )
                 years = [year]
-                period_value = f'{SEASON_DICT[season]}/{year}'
+                period_value = f"{SEASON_DICT[season]}/{year}"
             elif period == ComparisonPeriod.THIS_YEAR.value:
                 years = [self.parent.year]
-                period_value = f'{self.parent.year}'
+                period_value = f"{self.parent.year}"
             elif period == ComparisonPeriod.LAST_YEAR.value:
                 years = [self.parent.year - 1]
-                period_value = f'{self.parent.year - 1}'
+                period_value = f"{self.parent.year - 1}"
             elif period == ComparisonPeriod.LAST_5_YEARS.value:
                 years = range(self.parent.year - 6, self.parent.year)
-                period_value = f'{self.parent.year - 6} - {self.parent.year - 1}'
+                period_value = f"{self.parent.year - 6} - {self.parent.year - 1}"
             elif period == ComparisonPeriod.LAST_10_YEARS.value:
                 years = range(self.parent.year - 11, self.parent.year)
-                period_value = f'{self.parent.year - 11} - {self.parent.year - 1}'
+                period_value = f"{self.parent.year - 11} - {self.parent.year - 1}"
             elif period == ComparisonPeriod.LAST_5_YEARS_MONTH.value:
                 month = self.parent.month
                 years = range(self.parent.year - 6, self.parent.year)
-                period_value = f'{MONTHS_DICT[month]}/{self.parent.year - 6} - {MONTHS_DICT[month]}/{self.parent.year - 1}'
+                period_value = f"{MONTHS_DICT[month]}/{self.parent.year - 6} - {MONTHS_DICT[month]}/{self.parent.year - 1}"
             elif period == ComparisonPeriod.LAST_10_YEARS_MONTH.value:
                 month = self.parent.month
                 years = range(self.parent.year - 11, self.parent.year)
-                period_value = f'{MONTHS_DICT[month]}/{self.parent.year - 11} - {MONTHS_DICT[month]}/{self.parent.year - 1}'
+                period_value = f"{MONTHS_DICT[month]}/{self.parent.year - 11} - {MONTHS_DICT[month]}/{self.parent.year - 1}"
             elif period == ComparisonPeriod.LAST_5_YEARS_SEASON.value:
                 season = self.parent.season
                 years = range(self.parent.year - 6, self.parent.year)
-                period_value = f'{SEASON_DICT[season]}/{self.parent.year - 6} - {SEASON_DICT[season]}/{self.parent.year - 1}'
+                period_value = f"{SEASON_DICT[season]}/{self.parent.year - 6} - {SEASON_DICT[season]}/{self.parent.year - 1}"
             elif period == ComparisonPeriod.LAST_10_YEARS_SEASON.value:
                 season = self.parent.season
                 years = range(self.parent.year - 11, self.parent.year)
-                period_value = f'{SEASON_DICT[season]}/{self.parent.year - 11} - {SEASON_DICT[season]}/{self.parent.year - 1}'
+                period_value = f"{SEASON_DICT[season]}/{self.parent.year - 11} - {SEASON_DICT[season]}/{self.parent.year - 1}"
             elif period == ComparisonPeriod.ALL_MONTH.value:
                 month = self.parent.month
                 years = range(self.parent.min_year, self.parent.max_year)
-                period_value = f'{MONTHS_DICT[month]}/{self.parent.min_year} - {MONTHS_DICT[month]}/{self.parent.max_year - 1}'
+                period_value = f"{MONTHS_DICT[month]}/{self.parent.min_year} - {MONTHS_DICT[month]}/{self.parent.max_year - 1}"
             elif period == ComparisonPeriod.ALL_SEASON.value:
                 season = self.parent.season
                 years = range(self.parent.min_year, self.parent.max_year + 1)
-                period_value = f'{SEASON_DICT[self.parent.season]} {self.parent.min_year} - {self.parent.max_year}'
+                period_value = f"{SEASON_DICT[self.parent.season]} {self.parent.min_year} - {self.parent.max_year}"
             elif period == ComparisonPeriod.ALL.value:
                 years = range(self.parent.min_year, self.parent.max_year + 1)
-                period_value = f'{self.parent.min_year} - {self.parent.max_year}'
-            
+                period_value = f"{self.parent.min_year} - {self.parent.max_year}"
+
             if period in [
                 ComparisonPeriod.THIS_MONTH.value,
                 ComparisonPeriod.LAST_MONTH.value,
+                ComparisonPeriod.LAST_YEAR_MONTH.value,
                 ComparisonPeriod.LAST_5_YEARS_MONTH.value,
                 ComparisonPeriod.LAST_10_YEARS_MONTH.value,
                 ComparisonPeriod.ALL_MONTH.value,
@@ -258,8 +252,10 @@ class Report:
                 )
             elif period == ComparisonPeriod.ALL.value:
                 period_df = self.parent.values_df
-                period_df['dummy'] = 1
-                period_df_agg = period_df.groupby("dummy").agg({par: stats}).reset_index()
+                period_df["dummy"] = 1
+                period_df_agg = (
+                    period_df.groupby("dummy").agg({par: stats}).reset_index()
+                )
 
             rows = []
             std = period_df_agg[(par, "std")].iloc[0]
@@ -268,13 +264,16 @@ class Report:
             diff_perc = diff / stat_value * 100
             significance = self.get_significance(diff, std, stat_func)
             stat_date = self.get_minmax_date(period_df, par, stat_func, stat_value)
+            print(
+                f"period: {period}, par: {par}, stat_value: {stat_value}, std: {std}, diff: {diff}, diff_perc: {diff_perc}, significance: {significance}"
+            )
             # rank = self.get_rank(period_df, par, stat_func, stat_value)
             rows.append(
                 pd.DataFrame(
                     columns=report_fields,
                     data=[
                         [
-                            RECORD_TYPE_DICT['cp'],
+                            RECORD_TYPE_DICT["cp"],
                             period,
                             period_value,
                             par,
@@ -291,26 +290,30 @@ class Report:
             df_report = pd.concat([df_report] + rows, axis=0)
         return df_report
 
-    def get_target_value(self, par)-> Tuple[float, pd.DataFrame]:
-        
+    def get_target_value(self, par) -> Tuple[float, pd.DataFrame]:
+
         if self.period == "day":
             period_data_df = self.parent.get_day_df(self.parent.date)
             value = period_data_df[par].iloc[0]
         elif self.period == "month":
-            period_data_df = self.parent.get_month_year_df(self.parent.month, [self.parent.year])
-            period_data_df['dummy'] = 1
-            agg_df = period_data_df.groupby('dummy').agg(get_stat_func(par))
+            period_data_df = self.parent.get_month_year_df(
+                self.parent.month, [self.parent.year]
+            )
+            period_data_df = period_data_df.drop(columns=[self.parent.timestamp_col])
+            agg_df = period_data_df.groupby("month").agg(get_stat_func(par))
             value = agg_df[par].iloc[0]
         elif self.period == "season":
-            period_data_df = self.parent.get_season_df(self.parent.season, [self.parent.year])
-            period_data_df['dummy'] = 1
-            
-            agg_df = period_data_df.groupby('dummy').agg(get_stat_func(par))
+            period_data_df = self.parent.get_season_df(
+                self.parent.season, [self.parent.year]
+            )
+            period_data_df["dummy"] = 1
+
+            agg_df = period_data_df.groupby("dummy").agg(get_stat_func(par))
             value = agg_df[par].iloc[0]
         elif self.period == "year":
             period_data_df = self.parent.get_years_df([self.parent.year])
-            period_data_df['dummy'] = 1
-            agg_df = period_data_df.groupby('dummy').agg(get_stat_func(par))
+            period_data_df["dummy"] = 1
+            agg_df = period_data_df.groupby("dummy").agg(get_stat_func(par))
             value = agg_df[par].iloc[0]
         return value, period_data_df
 
@@ -335,7 +338,7 @@ class Report:
 
     def get_report(self):
         report_df = pd.DataFrame(columns=report_fields)
-        # daly, monthly, seasonal or yearly report
+        # daily, monthly, seasonal or yearly report
         period_value = {
             "day": self.parent.date,
             "month": self.parent.month,
@@ -346,7 +349,15 @@ class Report:
             # gets the daily value for a daily value, the mean month average for a monthly value etc
             target_value, period_df = self.get_target_value(par)
             stat_func = get_stat_func(par)
-            stat_date = self.get_minmax_date(period_df, par, stat_func, target_value)
+            if self.period == "day":
+                stat_date = period_df.iloc[0][self.parent.timestamp_col].strftime(
+                    "%Y-%m-%d"
+                )
+            else:
+                stat_date = self.get_minmax_date(
+                    period_df, par, stat_func, target_value
+                )
+
             row = pd.DataFrame(
                 data=[
                     [
@@ -423,7 +434,7 @@ class Dataset:
             list: A list of column names.
         """
         return self.value_df.columns
-    
+
     def get_report_types(self):
         return list(self.reports.keys())
 
@@ -431,11 +442,14 @@ class Dataset:
         return range(self.min_year, self.max_year + 1)
 
     def get_date_range(self):
-        return (self.values_df[self.timestamp_col].min(), self.values_df[self.timestamp_col].max())
-    
+        return (
+            self.values_df[self.timestamp_col].min(),
+            self.values_df[self.timestamp_col].max(),
+        )
+
     def get_num_records(self):
         return len(self.values_df)
-    
+
     def complete_data(self):
         self.values_df[self.timestamp_col] = pd.to_datetime(
             self.values_df[self.timestamp_col]
@@ -657,16 +671,22 @@ class Dataset:
             Tuple[str, pd.DataFrame, str]: A tuple containing the title of the report, the report data as a pandas DataFrame, and a text string.
         """
         df = self.reports[type].get_report()
-        summary_text = (
-            get_completion(
-                txt["system_prompt"],
-                txt["user_prompt"].format(df.to_string(index=False)),
+        if generate_summary:
+            summary_text = (
+                get_completion(
+                    txt["system_prompt"],
+                    txt["user_prompt"].format(df.to_string(index=False)),
+                )
+                if generate_summary
+                else ""
             )
-            if generate_summary
-            else ""
-        )
-
-        return self.reports[type].get_title(), df, summary_text
+        else:
+            summary_text = ""
+        return {
+            "title": self.reports[type].get_title(),
+            "data": df,
+            "summary_text": summary_text,
+        }
 
     def home_url(self):
         return f"https://{self.root}/explore/dataset/{self.key}/"

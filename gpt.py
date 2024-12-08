@@ -2,6 +2,12 @@ from openai import OpenAI
 from helper import get_var
 import streamlit as st
 
+
+client = OpenAI(
+    api_key=st.secrets["OPENAI_API_KEY"],
+)
+
+
 def get_completion(system_prompt, user_prompt):
     """
     Generates a completion using OpenAI's GPT-4o model.
@@ -15,11 +21,6 @@ def get_completion(system_prompt, user_prompt):
     """
 
     model = "gpt-4o"
-
-    client = OpenAI(
-        api_key=st.secrets["OPENAI_API_KEY"],
-    )
-
     completion = client.chat.completions.create(
         model=model,
         messages=[
@@ -31,3 +32,20 @@ def get_completion(system_prompt, user_prompt):
     )
 
     return completion.choices[0].message.content.strip()
+
+
+def get_audio(text: str, audio_file: str) -> bool:
+    with st.spinner("Generating audio..."):
+        try:
+            from openai import OpenAI
+
+            response = client.audio.speech.create(
+                model="tts-1", voice="alloy", input=text
+            )
+            # Assuming response.content contains the binary audio data
+            with open(audio_file, "wb") as file:
+                file.write(response.content)
+            return True
+        except Exception as e:
+            print(e)
+            return False

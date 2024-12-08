@@ -74,7 +74,7 @@
                     "compare-to-periods": ["last_year", "all_time"],
                     "parameters": ["o3_ug_m3_mean", "o3_ug_m3_max", "no2_ug_m3_mean", "no2_ug_m3_max", "pm10_ug_m3_mean", "pm10_ug_m3_max", "pm2_5_ug_m3_mean", "pm2_5_ug_m3_max"]
                 }
-        }
+            }
     },
     "100089": {
         "root": "data.bs.ch",
@@ -131,7 +131,8 @@
                 "agg_funcs": [
                     "sum",
                     "max",
-                    "min"
+                    "min",
+                    "mean"
                 ],
                 "standards": []
             }
@@ -139,26 +140,19 @@
         "aggregation": "d",
         "rename-cols": false,
         "reports": {
-            "day":
-                {
-                    "title": "Kantonaler Stromverbrauch von {}, Vergleich mit historischen Werten",
-                    "auto-min-days": 1,
-                    "compare-to-periods": ["last_month", "year_todate", "all_time"],
-                    "parameters": ["stromverbrauch_kwh_sum"]
-                },
             "month":
                 {
                     "title": "Kantonaler monatlicher Stromverbrauch im {} {}, Vergleich mit historischen Werten",
                     "auto-min-days": 15,
-                    "compare-to-periods": ["last_year", "all_time"],
-                    "parameters": ["stromverbrauch_kwh_sum"]
+                    "compare-to-periods": ["last_year_month", "all_time_month", "last_10_years_month"],
+                    "parameters": ["stromverbrauch_kwh_mean"]
                 },
             "year":
                 {
                     "title": "Kantonaler jährlicher Stromverbrauch im {}, Vergleich mit historischen Werten",
                     "auto-min-days": 90,
                     "compare-to-periods": ["last_year", "all_time"],
-                    "parameters": ["stromverbrauch_kwh_sum"]
+                    "parameters": ["stromverbrauch_kwh_mean"]
                 }
         }
     },
@@ -278,7 +272,7 @@
                 },
             "year":
                 {
-                    "title": "Jährliche Luftqualit\u00e4t Station A2 Hard vom {}, Vergleich mit historischen Werten",
+                    "title": "J\u00e4hrliche Luftqualit\u00e4t Station A2 Hard vom {}, Vergleich mit historischen Werten",
                     "auto-min-days": 90,
                     "compare-to-periods": ["last_year", "all_time"],
                     "parameters": ["no2_mean", "no2_max", "pm10_mean", "pm10_max", "pm2_5_mean", "pm2_5_max"]
