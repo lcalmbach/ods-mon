@@ -13,11 +13,11 @@ import gpt
 
 from helper import MONTHS_DICT, SEASON_DICT
 
-__version__ = "0.1.0"
+__version__ = "0.1.1"
 __author__ = "Lukas Calmbach"
 __author_email__ = "lcalmbach@gmail.com"
 
-VERSION_DATE = "2024-12-058"
+VERSION_DATE = "2024-12-08"
 APP_NAME = "Data-News-Generator"
 APP_ICON = "📰"
 GIT_REPO = "https://github.com/lcalmbach/ods-mon"

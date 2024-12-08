@@ -264,9 +264,6 @@ class Report:
             diff_perc = diff / stat_value * 100
             significance = self.get_significance(diff, std, stat_func)
             stat_date = self.get_minmax_date(period_df, par, stat_func, stat_value)
-            print(
-                f"period: {period}, par: {par}, stat_value: {stat_value}, std: {std}, diff: {diff}, diff_perc: {diff_perc}, significance: {significance}"
-            )
             # rank = self.get_rank(period_df, par, stat_func, stat_value)
             rows.append(
                 pd.DataFrame(
@@ -458,7 +455,7 @@ class Dataset:
         self.values_df["month"] = self.values_df[self.timestamp_col].dt.month
         self.values_df["season"] = self.values_df["month"].map(MONTH2SEASON)
         self.values_df["season_year"] = np.where(
-            self.values_df["month"].isin((1, 2)),
+            self.values_df["month"] == 12,
             self.values_df["year"] + 1,
             self.values_df["year"],
         )
